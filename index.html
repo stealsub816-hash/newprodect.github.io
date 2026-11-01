@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PhotoShop Pro</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark">P</span><span>PhotoShop <b>Pro</b></span></div>
+    <nav class="menu">
+      <button id="newBtn">Новый</button>
+      <button id="openBtn">Открыть</button>
+      <button id="savePngBtn" class="primary">Скачать PNG</button>
+      <button id="saveJpgBtn">Скачать JPG</button>
+      <input id="fileInput" type="file" accept="image/*" hidden>
+    </nav>
+    <div class="top-right"><span class="online-dot"></span> Редактор готов</div>
+  </header>
+
+  <main class="app">
+    <aside class="toolbar panel">
+      <div class="panel-heading">ИНСТРУМЕНТЫ</div>
+      <div class="tool-grid">
+        <button class="tool active" data-tool="move" title="Перемещение">↖<small>Переместить</small></button>
+        <button class="tool" data-tool="brush" title="Кисть">🖌<small>Кисть</small></button>
+        <button class="tool" data-tool="eraser" title="Ластик">▱<small>Ластик</small></button>
+        <button class="tool" data-tool="crop" title="Обрезка">⌗<small>Обрезка</small></button>
+        <button class="tool" data-tool="text" title="Текст">T<small>Текст</small></button>
+        <button class="tool" data-tool="rect" title="Прямоугольник">□<small>Фигура</small></button>
+        <button class="tool" data-tool="fill" title="Заливка">▰<small>Заливка</small></button>
+        <button class="tool" data-tool="eyedropper" title="Пипетка">◉<small>Пипетка</small></button>
+      </div>
+      <div class="tool-options">
+        <label>Основной цвет</label>
+        <div class="color-row"><input id="colorInput" type="color" value="#287bff"><span id="colorHex">#287BFF</span></div>
+        <label for="brushSize">Размер кисти <b id="brushSizeValue">18</b></label>
+        <input id="brushSize" type="range" min="1" max="100" value="18">
+        <label for="opacity">Непрозрачность <b id="opacityValue">100%</b></label>
+        <input id="opacity" type="range" min="5" max="100" value="100">
+        <button id="applyCrop" class="wide red-btn" disabled>Применить обрезку</button>
+        <button id="cancelCrop" class="wide ghost" disabled>Отмена обрезки</button>
+      </div>
+      <div class="hint">Совет: откройте фото или создайте новый холст, чтобы начать.</div>
+    </aside>
+
+    <section class="workspace">
+      <div class="workspace-head">
+        <div><strong id="documentName">Без названия</strong><span id="dimensions"> · 1200 × 800</span></div>
+        <div class="zoom-controls">
+          <button id="zoomOut">−</button><span id="zoomLabel">100%</span><button id="zoomIn">+</button>
+          <button id="fitBtn">Вписать</button>
+        </div>
+      </div>
+      <div class="canvas-area" id="canvasArea">
+        <div class="canvas-wrap" id="canvasWrap">
+          <canvas id="editorCanvas" width="1200" height="800"></canvas>
+          <canvas id="overlayCanvas" width="1200" height="800"></canvas>
+        </div>
+      </div>
+      <div class="statusbar"><span id="statusText">Готово</span><span>PhotoShop Pro Web · Локальная обработка</span></div>
+    </section>
+
+    <aside class="rightbar panel">
+      <div class="panel-heading">СВОЙСТВА</div>
+      <div class="section">
+        <div class="section-title">Коррекция</div>
+        <label>Яркость <b id="brightnessValue">100%</b></label>
+        <input id="brightness" type="range" min="20" max="200" value="100">
+        <label>Контраст <b id="contrastValue">100%</b></label>
+        <input id="contrast" type="range" min="20" max="200" value="100">
+        <label>Насыщенность <b id="saturationValue">100%</b></label>
+        <input id="saturation" type="range" min="0" max="200" value="100">
+        <button id="resetAdjustments" class="wide ghost">Сбросить коррекцию</button>
+      </div>
+      <div class="section">
+        <div class="section-title">Фильтры</div>
+        <div class="filter-grid">
+          <button data-filter="grayscale">Ч/Б</button>
+          <button data-filter="sepia">Сепия</button>
+          <button data-filter="blur">Размытие</button>
+          <button data-filter="sharpen">Резкость</button>
+          <button data-filter="invert">Инверсия</button>
+          <button data-filter="none">Сброс</button>
+        </div>
+      </div>
+      <div class="section layers-section">
+        <div class="section-title">Слои <div class="layer-actions"><button id="addLayer" title="Добавить слой">＋</button><button id="deleteLayer" title="Удалить слой">−</button></div></div>
+        <div id="layersList" class="layers-list"></div>
+        <div class="layer-note">Рисование и текст добавляются на выбранный слой.</div>
+      </div>
+    </aside>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
